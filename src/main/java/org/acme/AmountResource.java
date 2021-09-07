@@ -55,9 +55,6 @@ public class AmountResource {
     @Path("/classloaders")
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> classloaders() {
-//        return Bootstrap.getServices(CurrencyProviderSpi.class).stream().map( s -> s.getClass().getName()).collect(Collectors.toList());
-//        return ServiceLoader.load(CurrencyProviderSpi.class).stream()
-//                .map( p -> p.get().getClass().getName()).collect(Collectors.toList());
         return resolveClassloaders(Thread.currentThread().getContextClassLoader(),new ArrayList<>());
 
     }

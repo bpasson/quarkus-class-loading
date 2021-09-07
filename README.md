@@ -1,12 +1,25 @@
 # Quarkus Class Loader Issues
 
-This project demonstrates classloading differences when running in production or dev/test mode. It is supporting GitHub Issue #...
+This project demonstrates classloading differences when running in production or dev/test mode. It is supporting GitHub Issue [Java Money RI #369](https://github.com/JavaMoney/jsr354-ri/issues/369)
 
 ## Details
 This application uses the Java Money API and the Moneta RI. A custom currency (XYZ) is installed using
 the SPI mechanism Java Money exposes. See [META-INF/services/javax.money.spi.CurrencyProviderSpi](src/main/resources/META-INF/services/javax.money.spi.CurrencyProviderSpi)
 
 It demonstrates a potentially unwanted difference between dev/test and production mode. When running the application in dev/test mode, the custom currency provider is never found by Java Money. When running in production mode, it works as expected. 
+
+## Running the example
+
+To run the application in development mode use:
+```
+$ ./mvnw quarkus:dev
+```
+
+To run the application in production mode use:
+```
+$ ./mvnw clean verify
+$ java -jar target/quarkus-app/quarkus-run.jar
+```
 
 ## Endpoints
 The following endpoints can be uses to get classloader info. See [AmountResource](src/main/java/org/acme/AmountResource.java) the implementation.
